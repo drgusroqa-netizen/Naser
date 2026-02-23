@@ -1,0 +1,23 @@
+{
+  "name": "social-media-platform",
+  "version": "1.0.0",
+  "description": "منصة تواصل اجتماعي احترافية - Professional Social Media Platform",
+  "main": "app.js",
+  "scripts": {
+    "start": "live-server",
+    "dev": "live-server --port=8000"
+  },
+  "keywords": [
+    "social-media",
+    "messaging",
+    "reels",
+    "stories",
+    "posts",
+    "social-network"
+  ],
+  "author": "Social Media App",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
