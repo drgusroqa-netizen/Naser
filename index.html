@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة التواصل الاجتماعي</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-share-nodes"></i>
+                    <span>SociaHub</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="home">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="#" class="nav-item" data-page="explore">
+                    <i class="fas fa-compass"></i>
+                    <span>استكشاف</span>
+                </a>
+                <a href="#" class="nav-item" data-page="messages">
+                    <i class="fas fa-envelope"></i>
+                    <span>الرسائل</span>
+                </a>
+                <a href="#" class="nav-item" data-page="profile">
+                    <i class="fas fa-user"></i>
+                    <span>الملف الشخصي</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>تسجيل الخروج</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="ابحث عن مستخدمين...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="header-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Feed Section -->
+            <section id="home" class="page-section active">
+                <!-- Create Post Modal Button -->
+                <div class="create-post-section">
+                    <button class="create-post-btn" id="createPostBtn">
+                        <i class="fas fa-pen"></i>
+                        <span>إنشاء منشور</span>
+                    </button>
+                </div>
+
+                <!-- Posts Feed -->
+                <div class="feed" id="feedContainer">
+                    <!-- Posts will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Explore Section -->
+            <section id="explore" class="page-section">
+                <div class="explore-container">
+                    <h2>استكشف المستخدمين</h2>
+                    <div class="users-grid" id="usersGrid">
+                        <!-- Users will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Messages Section -->
+            <section id="messages" class="page-section">
+                <div class="messages-container">
+                    <div class="messages-list" id="messagesList">
+                        <!-- Messages will be loaded here -->
+                    </div>
+                    <div class="message-chat" id="messageChat" style="display: none;">
+                        <!-- Chat will be displayed here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="page-section">
+                <div class="profile-container" id="profileContainer">
+                    <!-- Profile will be loaded here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Create Post Modal -->
+    <div id="createPostModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>إنشاء منشور جديد</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea id="postText" class="post-textarea" placeholder="ما الذي تفكر فيه؟"></textarea>
+                <div class="post-options">
+                    <button class="option-btn" id="imageUploadBtn">
+                        <i class="fas fa-image"></i>
+                        <span>صورة</span>
+                    </button>
+                    <button class="option-btn" id="videoReelBtn">
+                        <i class="fas fa-video"></i>
+                        <span>فيديو ريلز</span>
+                    </button>
+                    <button class="option-btn" id="storyBtn">
+                        <i class="fas fa-circle"></i>
+                        <span>قصة</span>
+                    </button>
+                </div>
+                <div id="mediaPreview" class="media-preview"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-btn">إلغاء</button>
+                <button class="submit-btn" id="submitPostBtn">نشر</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>تعديل الملف الشخصي</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-pic-upload">
+                    <img id="profilePicPreview" src="" alt="صورة الملف الشخصي">
+                    <input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+                    <button class="upload-pic-btn">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+                <input type="text" id="usernameInput" class="form-input" placeholder="اسم المستخدم">
+                <textarea id="bioInput" class="form-textarea" placeholder="السيرة الذاتية"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-btn">إلغاء</button>
+                <button class="submit-btn" id="saveProfileBtn">حفظ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content message-modal">
+            <div class="modal-header">
+                <h2 id="messageUserName">اسم المستخدم</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="messages-display" id="messagesDisplay"></div>
+            <div class="message-input-area">
+                <input type="text" id="messageInput" class="message-input" placeholder="اكتب رسالة...">
+                <button class="send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="imageInput" accept="image/*" style="display: none;">
+    <input type="file" id="videoInput" accept="video/*" style="display: none;">
+
+    <script src="app.js"></script>
+</body>
+</html>
